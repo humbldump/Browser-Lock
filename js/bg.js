@@ -1,4 +1,5 @@
 class BrowserLock {
+    
     static start() {
         util.localduzen()
             .then(() => {

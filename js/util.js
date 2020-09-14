@@ -1,30 +1,21 @@
-
 const KayitType = "local";
 class util {
     static localduzen() {
         return new Promise((resolve, reject) => {
-            try {
-                /* if (localStorage.vucbug != "false") {
-                    util.StorageRemove("user__pass");
+            util.StorageGet("user__pass").then(resolve => {
+                if (!resolve) {
                     localStorage.setItem('KilitAcik', 'false');
-                } */
-                util.StorageGet("user__pass").then(resolve => {
-                    if (!resolve) {
-                        localStorage.setItem('KilitAcik', 'false');
-                    }
-                }).then(() => {
-                    if (!localStorage.getItem('KilitAcik')) localStorage.setItem('KilitAcik', 'false');
-                    if (!localStorage.getItem('settime')) localStorage.setItem('kalanhak', 3);
-                    if (!localStorage.getItem('settime')) localStorage.setItem('kalanhak', 3);
-                    localStorage.setItem('Kilitli', 'true');
-                    localStorage.setItem('KilitEkran', 'false');
-                    localStorage.setItem('ilkekran', 'true');
-                    localStorage.setItem('FormLogin', 'false');
-                });
-                resolve();
-            } catch (error) {
-                reject(error);
-            }
+                }
+            }).then(() => {
+                if (!localStorage.getItem('KilitAcik')) localStorage.setItem('KilitAcik', 'false');
+                if (!localStorage.getItem('settime')) localStorage.setItem('kalanhak', 3);
+                if (!localStorage.getItem('settime')) localStorage.setItem('kalanhak', 3);
+                localStorage.setItem('Kilitli', 'true');
+                localStorage.setItem('KilitEkran', 'false');
+                localStorage.setItem('ilkekran', 'true');
+                localStorage.setItem('FormLogin', 'false');
+            });
+            resolve();
         });
     }
 
