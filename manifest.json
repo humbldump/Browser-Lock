@@ -1,0 +1,40 @@
+{
+  "author": "HumblDump",
+  "background": {
+    "scripts": [
+      "js/util.js",
+      "js/notification.js",
+      "js/bg.js",
+      "js/start.js"
+    ]
+  },
+  "content_security_policy": "script-src 'self' https://*.google.com https://*.gstatic.com; object-src 'self'",
+  "default_locale": "en",
+  "description": "__MSG_uygulama_aciklama__",
+  "developer": {
+    "name": "humbldump"
+  },
+  "icons": {
+    "128": "logos/128-logo.png",
+    "16": "logos/16-logo.png",
+    "24": "logos/24-logo.png",
+    "48": "logos/48-logo.png",
+    "64": "logos/64-logo.png"
+  },
+  "manifest_version": 2,
+  "minimum_chrome_version": "49",
+  "name": "__MSG_uygulama_baslik__",
+  "options_page": "html/options.html",
+  "permissions": [
+    "tabs",
+    "notifications",
+    "contextMenus",
+    "storage",
+    "unlimitedStorage",
+    "history",
+    "*://humbldump.herokuapp.com/*",
+    "*://google.com/*"
+  ],
+  "short_name": "__MSG_uygulama_kisa_baslik__",
+  "version": "1.0.6"
+}
