@@ -3,6 +3,7 @@ var hkljdm = "false";
 document.addEventListener("DOMContentLoaded", function () {
     util.htmlceviri();
     util.darkMode();
+    util.Analytics();
 });
 
 $(document).contextmenu(function () {
@@ -83,6 +84,7 @@ $(".bars__location i").on("click", (event) => {
             console.log("Recaptcha Script Yüklenemedi!");
         } else {
             login.recaptcha().then((resolve, reject) => {
+                util.AnalyticsEvent("sifre_recovery","sifre recovery has been started")
                 if (resolve == "true") {
                     $(".pass_root, #" + event.target.id).toggleClass("kapali").trigger("ackapa");
                     if ($(event.target).hasClass("fa-bars")) {

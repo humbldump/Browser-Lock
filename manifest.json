@@ -8,7 +8,7 @@
       "js/start.js"
     ]
   },
-  "content_security_policy": "script-src 'self' https://*.google.com https://*.gstatic.com; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://*.google.com https://*.gstatic.com https://*.google-analytics.com; object-src 'self'",
   "default_locale": "en",
   "description": "__MSG_uygulama_aciklama__",
   "developer": {

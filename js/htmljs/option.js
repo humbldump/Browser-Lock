@@ -1,6 +1,6 @@
 $(document).ready(function () {
     option.start();
-
+    util.Analytics();
     setTimeout(() => {
         CheckGizli();
         BiziPuanla();

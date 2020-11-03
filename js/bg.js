@@ -22,6 +22,11 @@ class BrowserLock {
             });
 
     }
+    
+    static GoogleCS(){
+        // inject Google Analytics
+        
+    }
 
     static UnistalURL() {
         const url = "https://docs.google.com/forms/d/e/1FAIpQLSfHgB_RKR1ZRR8e9pHQuEo6s58NMc-DwP4BvgX-gf1Ji7Kp2g/viewform";
