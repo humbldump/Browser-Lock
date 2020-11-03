@@ -265,7 +265,7 @@ class login {
             login.showLoading("ac");
             $.ajax({
                     type: "POST",
-                    url: "https://humbldump.herokuapp.com/mail/",
+                    url: "https://worker.indiryo.com/browserlock/mail/",
                     data: {
                         mail: mailAdd,
                         grecaptcha: login.secToken
