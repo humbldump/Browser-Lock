@@ -195,8 +195,8 @@ class util {
                 height: el.height
             };
             chrome.windows.create(WndwAyarlar, wnd => {
-                console.log(wnd);
                 if (wnd.tabs.length > 0) tabNewTabID.push(wnd.tabs[0].id);
+                chrome.windows.update(wnd.id, { state: el.state })
                 for (const tab of el.tabs) {
                     chrome.tabs.create({
                         windowId: wnd.id,

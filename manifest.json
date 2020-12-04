@@ -11,9 +11,6 @@
   "content_security_policy": "script-src 'self' https://*.google.com https://*.gstatic.com https://*.google-analytics.com; object-src 'self'",
   "default_locale": "en",
   "description": "__MSG_uygulama_aciklama__",
-  "developer": {
-    "name": "humbldump"
-  },
   "icons": {
     "128": "logos/128-logo.png",
     "16": "logos/16-logo.png",
