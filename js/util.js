@@ -22,7 +22,7 @@ class util {
 
     static Analytics() {
         _gaq.push(['_setAccount', 'UA-57988211-7']);
-        _gaq.push(['_setDomainName', 'browserlock'],['_trackPageview']);
+        _gaq.push(['_trackPageview']);
 
         (function () {
             var ga = document.createElement('script');

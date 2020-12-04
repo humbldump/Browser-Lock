@@ -64,7 +64,7 @@ class BrowserLock {
 
     static GirisEkrani() {
         return new Promise(resolve => {
-            alert(util.Tarayici());
+            //alert(util.Tarayici());
             const width = 640;
             const height = 540;
             const left = parseInt((screen.width / 2) - (width / 2));
@@ -171,6 +171,31 @@ class BrowserLock {
         //         }
         //     }
         // })
+
+        chrome.windows.onCreated.addListener((created) => {
+            const WndID = localStorage.getItem('EkranID');
+            
+            if (created.id == WndID) {
+                console.log("Login Screen opened on "+WndID);
+            }
+            else{
+                const {Kilitli,KilitEkran,KilitAcik,ilkekran} = localStorage;
+                
+                if (KilitAcik == "true" && Kilitli == "true") {
+                    
+                    if (KilitEkran == "false" && ilkekran == "true") {
+                        setTimeout(() => {
+                            BrowserLock.Lock();
+                        }, 1500);
+                    }
+                    else if(KilitEkran == "true"){
+                        chrome.windows.remove(created.id)
+                    }
+
+                }
+
+            }
+        })
     }
 
     static __onWindowClose() {
