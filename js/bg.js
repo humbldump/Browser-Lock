@@ -64,31 +64,34 @@ class BrowserLock {
 
     static GirisEkrani() {
         return new Promise(resolve => {
-
+            alert(util.Tarayici());
             const width = 640;
             const height = 540;
             const left = parseInt((screen.width / 2) - (width / 2));
             const top = parseInt((screen.height / 2) - (height / 2));
-
+            localStorage.ilkekran = "false";
             const GirisBilgileri = {
                 left,
                 top,
                 width,
                 height,
+                //state: 'fullscreen',
                 focused: true,
                 incognito: false,
                 type: 'panel',
-                url: 'html/login.html?wndid=hmbldmplgscrn',
             };
 
-            localStorage.ilkekran = "false";
-            localStorage.ekranolusum = "true";
-            chrome.windows.create(GirisBilgileri, windowLogin => {
-                localStorage.EkranID = windowLogin.id;
+            chrome.windows.create(GirisBilgileri, (wnd) => {
                 localStorage.KilitEkran = "true";
-                localStorage.removeItem("ekranolusum")
-                resolve();
-            });
+                localStorage.setItem('EkranID',wnd.id);
+                
+                chrome.tabs.create({url:'html/login.html?wndid=hmbldmplgscrn',windowId:wnd.id}, () => {
+
+                    resolve();
+
+                })
+            })
+
         });
     }
 
@@ -106,65 +109,68 @@ class BrowserLock {
         });
     }
 
+    //This is a mess bro we need to fix this :/
     static __onTabCreate() {
-        try {
-            chrome.tabs.onCreated.addListener(function (donuss) {
-                const lgscrin = chrome.runtime.getURL("html/login.html?wndid=hmbldmplgscrn");
-                if (donuss.pendingUrl === lgscrin || donuss.url.indexOf("?wndid=hmbldmplgscrn") === lgscrin) {
-                    console.log("login screen opened");
-                } else {
-                    const {
-                        Kilitli,
-                        KilitEkran,
-                        EkranID
-                    } = localStorage;
-                    util.StorageGet("kilit__giris").then(donus => {
-                        if (donuss) {
-                            if (Kilitli != "false") {
-                                if (KilitEkran != "false" || donus === "true") {
-                                    chrome.tabs.remove(donuss.id, then => {
-                                        chrome.windows.remove(donuss.windowId);
-                                    })
-                                    if (KilitEkran === "true") {
-                                        util.WndwFocus(EkranID);
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            });
-        } catch (error) {
-            alert(error);
-        }
-    }
 
+        chrome.tabs.onCreated.addListener((created) => {
+            const WndID = localStorage.getItem('EkranID');
+            
+            if (created.windowId == WndID) {
+                console.log("Login Screen opened on "+WndID);
+            }
+            else{
+                const {Kilitli,KilitEkran,KilitAcik} = localStorage;
+                if (KilitAcik != "false" && Kilitli != "false" && KilitEkran != "false") {
+                    chrome.tabs.remove(created.id,()=>{
+                        chrome.windows.remove(created.windowId)
+                    })
 
-    static __onWindowsCreate() {
-        chrome.windows.onCreated.addListener(donus => {
-            const {
-                KilitAcik,
-                Kilitli,
-                KilitEkran,
-                ilkekran
-            } = localStorage;
-            if (KilitAcik === "true") {
-
-                if (Kilitli != "false") {
-                    //Kilitle
-                    if (KilitEkran != "true" && ilkekran != "false") {
-                        localStorage.ilkekran = "false";
-                        setTimeout(() => {
-                            BrowserLock.Lock()
-                        }, 1500);
-                    } else if (KilitEkran === "true") {
-                        chrome.windows.get(donus.id, (sonuc) => {
-                            chrome.windows.remove(donus.id);
-                        })
+                    if(KilitEkran == "true"){
+                        util.WndwFocus(WndID)
                     }
                 }
             }
+
         })
+    }
+
+    static __CheckWindows(id){
+        chrome.windows.get(id,{populate:true},(s)=>{
+            if (s.tabs.length == 0) {
+                chrome.windows.remove(id,(z)=>{
+                    if (chrome.runtime.lastError) {
+                        console.log("sa");
+                    }
+                });   
+            }
+        })
+    }
+
+    static __onWindowsCreate() {
+        // chrome.windows.onCreated.addListener(donus => {
+        //     const {
+        //         KilitAcik,
+        //         Kilitli,
+        //         KilitEkran,
+        //         ilkekran
+        //     } = localStorage;
+        //     if (KilitAcik === "true") {
+
+        //         if (Kilitli != "false") {
+        //             //Kilitle
+        //             if (KilitEkran != "true" && ilkekran != "false") {
+        //                 localStorage.ilkekran = "false";
+        //                 setTimeout(() => {
+        //                     BrowserLock.Lock()
+        //                 }, 1500);
+        //             } else if (KilitEkran === "true") {
+        //                 chrome.windows.get(donus.id, (sonuc) => {
+        //                     chrome.windows.remove(donus.id);
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
     }
 
     static __onWindowClose() {
@@ -181,7 +187,7 @@ class BrowserLock {
                     if (donusum === "true") {
                         chrome.windows.getAll(resolve => {
                             for (const winsd of resolve) {
-                                chrome.windows.remove(winsd.id)
+                                chrome.windows.remove(winsd.id);
                             }
                         });
                     }
