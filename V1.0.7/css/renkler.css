@@ -56,7 +56,7 @@ html#dark_mode:root {
 
 .jconfirm.jconfirm-lock-noti .jconfirm-bg {
     background: var(--formbg);
-    opacity: .5;
+    opacity: .3;
 }
 #login__body .jconfirm.jconfirm-lock-noti .jconfirm-box{
     width: 70% !important;

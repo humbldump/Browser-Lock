@@ -54,9 +54,9 @@ $("input").focus(function (event) {
 });
 
 
-$(document).ready(function () {
+$(document).ready(async function () {
     kalanhak.checkfortrue();
-    login.LoadRecaptcha();
+    await login.LoadRecaptcha();
     $(".tarayici__pwd").focus();
 });
 
@@ -76,8 +76,8 @@ $(".password_lost").click(function (e) {
 });
 
 $(".bars__location i").on("click", (event) => {
-    if (localStorage.getItem('PassRecovery') != "true") {
-        util.uyarigonder("Browser Lock", util.ceviri("sifremi_unuttum") + util.ceviri("kapali") );
+    if (util.ValidMail(localStorage.getItem('MainMail')) == false) {
+        util.uyarigonder("Browser Lock", "Sistemde kayıtlı bir mail yok" );
     } else {
         if (hkljdm == "false") {
             alert("try again later! Google script couldnt loaded!")
