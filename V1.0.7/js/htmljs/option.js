@@ -86,15 +86,15 @@ $(".change__pass__btn").on("click", donus => {
         }
     });
 });
+
 //İnput Odaklanma
 $("input").on("focus", donus => {
     if ($(donus.target).parent().hasClass("alert")) {
         $(donus.target).parent().removeClass("alert");
     }
 });
+
 //Sağ üst uyarıları
-
-
 $(document).on('click', '.notifyjs-uyar-base', (e) => {
 
     switch (Object.values(e.currentTarget.classList)[1]) {
@@ -122,18 +122,21 @@ $(document).on('click', '.notifyjs-uyar-base', (e) => {
             console.log("bip bap bop");
             break;
     }
-    
+
 })
 
-
-/*
-$(document).on('click', '.notifyjs-uyar-gizli', function () {
-    
+//Change mail butonu tıklaması
+$(document).on("click", ".mail_button_section button#btn__field.btn-1e.main__mail__btn", function maildegis() {
+    if (mail = util.ValidMail(window.prompt("Geçerli bir mail adresi girin.", "Mail adresin"))) {
+        localStorage.setItem('MainMail', mail)
+    }
+    else {
+        alert("Lütfen geçerli bir mail adresi giriniz!!!")
+    }
 });
 
-$(document).on("click", ".notifyjs-uyar-puanla", function () {
-    
-}); */
+
+
 
 class option {
     static start() {
@@ -153,10 +156,6 @@ class option {
                 resolve();
             });
         });
-
-
-
-
     }
 
 
@@ -228,7 +227,7 @@ class option {
     }
 
     static MailKontrol() {
-        
+
         if (util.ValidMail(localStorage.getItem("MainMail")) == false) {
 
             //todo tekrar bak bura knk
@@ -285,10 +284,10 @@ class option {
                             keys: ['enter'],
                             action: function () {
                                 var Sifre = this.$content.find('input#login__pass');
-                                const SifreHash = md5(Sifre.val());
+
                                 try {
                                     if (!Sifre.val()) throw util.ceviri('sifre_gir_uyari');
-                                    if (SifreHash != pass) throw util.ceviri('sifre_yanlis');
+                                    if (md5(Sifre.val()) != pass) throw util.ceviri('sifre_yanlis');
 
 
                                     localStorage.setItem('FormLogin', 'true');
@@ -374,6 +373,7 @@ class option {
         });
     }
 
+    //Kayit
     static girisyap() {
         return new Promise((resolve, reject) => {
             $.confirm({
@@ -418,15 +418,15 @@ class option {
 
 
                                                 alert(util.ceviri("ana_sifre_olusturuldu"));
+
+
+                                            }).finally(() => {
                                                 resolve()
                                                 return true;
 
-                                            }).finally(() => {
-                                                chrome.runtime.reload();
                                             });
                                     } catch (error) {
                                         alert(util.ceviri("ana_sifre_kaydedilmedi"));
-                                        console.log(error);
                                         util.TabiKapat();
                                     }
                                 } else {
