@@ -92,28 +92,48 @@ $("input").on("focus", donus => {
         $(donus.target).parent().removeClass("alert");
     }
 });
-//Uyarı Gizleme
-$(document).on('click', '.notifyjs-uyar-gizli', function () {
-    chrome.tabs.query({}, tabs => {
-        const tabara = tabs.find(tab => tab.url.indexOf('chrome://extensions') !== -1);
-        if (tabara) {
-            chrome.tabs.update(tabara.id, {
-                url: 'chrome://extensions/?id=' + chrome.runtime.id,
-                active: true
-            });
-        } else {
+//Sağ üst uyarıları
+
+
+$(document).on('click', '.notifyjs-uyar-base', (e) => {
+
+    switch (Object.values(e.currentTarget.classList)[1]) {
+        case "notifyjs-uyar-gizli":
+            chrome.tabs.query({}, tabs => {
+                const tabara = tabs.find(tab => tab.url.indexOf('chrome://extensions') !== -1)
+                if (tabara) {
+                    chrome.tabs.update(tabara.id, {
+                        url: 'chrome://extensions/?id=' + chrome.runtime.id,
+                        active: true
+                    });
+                } else {
+                    chrome.tabs.create({
+                        url: 'chrome://extensions/?id=' + chrome.runtime.id
+                    });
+                }
+            })
+            break;
+        case "notifyjs-uyar-puanla":
             chrome.tabs.create({
-                url: 'chrome://extensions/?id=' + chrome.runtime.id
+                url: 'https://www.patreon.com/humbldump'
             });
-        }
-    });
+            break;
+        default:
+            console.log("bip bap bop");
+            break;
+    }
+    
+})
+
+
+/*
+$(document).on('click', '.notifyjs-uyar-gizli', function () {
+    
 });
 
 $(document).on("click", ".notifyjs-uyar-puanla", function () {
-    chrome.tabs.create({
-        url: 'https://www.patreon.com/humbldump'
-    });
-});
+    
+}); */
 
 class option {
     static start() {
