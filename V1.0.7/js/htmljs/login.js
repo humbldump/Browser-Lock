@@ -147,7 +147,7 @@ class login {
         }
         else{
             if (md5($(ircode).val()) === rcode) {
-                if (npass.val().length >= 5 && npass.val().length <= 25) {
+                if (npass.val().length > 0 && npass.val().length <= 25) {
                     try {
                         util.StorageSet("user__pass", md5(npass.val())).then(()=>{
                             util.onaygonder("Browser Lock", util.ceviri("sifre_ok_degisti")+ npass.val());

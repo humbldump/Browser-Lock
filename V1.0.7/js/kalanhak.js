@@ -51,8 +51,6 @@ class kalanhak {
             var difference = +new Date(localStorage.settime) - +new Date();
             var dakika = Math.floor((difference / 1000 / 60) % 60);
             var saniye = Math.floor((difference / 1000) % 60);
-            //console.log(saniye);
-            //document.getElementById('count__mm').innerHTML = dakika;
             document.getElementById('count__ss').innerText = (dakika * 60) + saniye;
             kalanhak.forumkilitle();
             if (saniye <= 0 && dakika <= 0) {

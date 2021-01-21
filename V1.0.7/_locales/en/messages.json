@@ -93,7 +93,7 @@
     "message": "Can't save password"
   },
   "sifre_uzunluk_kontrol": {
-    "message": "Enter a password includes at least 5 character!"
+    "message": "Enter a password includes at least 1 character!"
   },
   "deneme_kaldi_bir": {
     "message": "Wrong password!<br><b class='atemp_left_alert'> "

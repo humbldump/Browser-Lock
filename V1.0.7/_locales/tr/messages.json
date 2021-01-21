@@ -93,7 +93,7 @@
     "message": "Şifre kaydedilemedi!"
   },
   "sifre_uzunluk_kontrol": {
-    "message": "En az 5 karakter içeren bir şifre gir!"
+    "message": "En az 1 karakter içeren bir şifre gir!"
   },
   "deneme_kaldi_bir": {
     "message": "Yanlış şifre!<br><b class='atemp_left_alert'> "
