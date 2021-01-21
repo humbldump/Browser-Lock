@@ -37,15 +37,6 @@ $("input[type='checkbox']").on("click", function (e) {
         if (resolve === "true") {
             localStorage.setItem(localname, $(this).is(':checked'))
             util.darkMode();
-            /*
-            if (this.id === "password__recovery__switch" && $(this).is(':checked')) {
-                var mail = localStorage.getItem("MainMail");
-
-                //!Mail Kontrolü
-                if (mail == null || mail == "") {
-                    //$(".main__mail__btn").trigger("click");
-                }
-            } */
         } else {
             e.preventDefault()
         }
@@ -149,7 +140,7 @@ class option {
     }
 
 
-    
+
 
     static switchSonuc(elm, iliski) {
         return new Promise((resolve, reject) => {
@@ -209,15 +200,6 @@ class option {
 
     static switchKontrol() {
         $("input[type='checkbox']").each((index, elm) => {
-            /*//?password recovery checker
-            if ($(elm).attr('id') === "password__recovery__switch") {
-                var mail = localStorage.getItem("MainMail");
-                if (mail == null || mail == "") {
-                    const ayar = false;
-                    $(elm).prop("checked", ayar);
-                    return false;
-                }
-            }*/
             const localname = $(elm).attr("local");
             const ayar = localStorage.getItem(localname) === 'true';
             $(elm).prop("checked", ayar);
@@ -226,27 +208,25 @@ class option {
     }
 
     static MailKontrol() {
-        let KayitliMail = util.ValidMail(localStorage.getItem("MainMail"))
-        if (KayitliMail == false) {
+        
+        if (util.ValidMail(localStorage.getItem("MainMail")) == false) {
 
             //todo tekrar bak bura knk
             //? Kullanıcı maili sisteme kayıtlı mı kontrolü
-            if (!localStorage.getItem('MainMail')) {
-                while (1) {
-                    var mail = window.prompt("Geçerli bir mail adresi girin.", "Mail adresin")
-                    if (util.ValidMail(mail) != false) {
-                        localStorage.setItem('MainMail', mail)
-                        break
-                    }
 
-                    alert("Lütfen geçerli bir mail adresi giriniz!!!")
-                }
+            var mail = window.prompt("Geçerli bir mail adresi girin.", "Mail adresin")
+            if (util.ValidMail(mail) != false) {
+                localStorage.setItem('MainMail', mail)
             }
-            
-        } else {
-            $(".main__mail__btn").text(util.ceviri("eposta_degistir"));
-            $(".email__show_").text(KayitliMail).parent().removeClass("disabled");
+            else {
+                alert("Lütfen geçerli bir mail adresi giriniz!!!")
+                this.MailKontrol()
+            }
+
         }
+
+        $(".main__mail__btn").text(util.ceviri("eposta_degistir"));
+        $(".email__show_").text(localStorage.getItem("MainMail")).parent().removeClass("disabled");
     }
 
     static notfyMe(text = "Error!", className = "hata") {
