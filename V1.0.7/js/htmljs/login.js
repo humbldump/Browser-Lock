@@ -47,6 +47,16 @@ $("#login_btn_field").on("click", function () {
 });
 
 
+//Şifreyi göster eventi
+$(document).on("mouseup mousedown mouseleave",".show_password",  function (e) {
+    
+
+    let sclass = (e.type == "mousedown") ? "text" : (e.type == "mousedown" || e.type == "mouseleave") ? "password" : "password"
+    $( this ).siblings("#pass__field").attr('type',sclass)
+
+
+});
+
 $("input").focus(function (event) {
     if ($(this).parent(".validate-area").hasClass('alert')) {
         $(this).parent(".validate-area").removeClass('alert');

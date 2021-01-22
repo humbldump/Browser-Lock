@@ -259,6 +259,26 @@ input[type="password"]:disabled {
 }
 
 
+.validate-area:not(.alert) .show_password::after{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: var(--siyah);
+    right: 40px;
+    font-size: 1.4rem;
+    font-family: FontAwesome;
+    font-weight: 300;
+    content: "\f070";
+    z-index: 2;
+    
+}
+
+.validate-area:not(.alert) .show_password:hover:after{
+    content: "\f06e";
+    color: var(--sari);
+    
+}
+
 
 .alert::before {
     position: absolute;
