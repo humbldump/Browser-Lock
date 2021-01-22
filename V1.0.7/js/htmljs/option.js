@@ -397,7 +397,7 @@ class option {
                             var Sifret = this.$content.find('input#first__pass__again');
                             var Mail = this.$content.find('input#pass__mail');
 
-                            if (Sifre.val().length > 1 && Sifre.val().length <= 25) {
+                            if (Sifre.val().length > 0 && Sifre.val().length <= 25) {
 
                                 if (util.ValidMail(Mail.val()) == false) {
                                     alert("Lütfen mail adresinizi doğru giriniz!")
