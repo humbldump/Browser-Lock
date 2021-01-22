@@ -235,7 +235,8 @@ class option {
 
             var mail = window.prompt("Geçerli bir mail adresi girin.", "Mail adresin")
             if (util.ValidMail(mail) != false) {
-                localStorage.setItem('MainMail', mail)
+                //mail ayarları
+                localStorage.setItem('MainMail', $(Mail).val()); localStorage.setItem('PassRecovery','true');
             }
             else {
                 alert("Lütfen geçerli bir mail adresi giriniz!!!")
@@ -412,8 +413,10 @@ class option {
                                             .then(() => {
                                                 localStorage.setItem('KilitAcik', 'true');
                                                 localStorage.setItem('Kilitli', 'false');
-                                                localStorage.setItem('MainMail', $(Mail).val())
 
+                                                //mail ayarları
+                                                localStorage.setItem('MainMail', $(Mail).val()); localStorage.setItem('PassRecovery','true');
+                                                
                                                 $("#browser__lock__switch").prop("checked", true);
 
 

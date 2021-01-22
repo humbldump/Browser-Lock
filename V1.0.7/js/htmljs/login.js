@@ -88,7 +88,11 @@ $(".password_lost").click(function (e) {
 $(".bars__location i").on("click", (event) => {
     if (util.ValidMail(localStorage.getItem('MainMail')) == false) {
         util.uyarigonder("Browser Lock", "Sistemde kayıtlı bir mail yok" );
-    } else {
+    }
+    else if (localStorage.getItem('PassRecovery') != 'true') {
+        util.uyarigonder("Browser Lock", "Şifre sıfırlama kapalı durumda" );
+    }
+    else {
         if (hkljdm == "false") {
             alert("try again later! Google script couldnt loaded!")
             console.log("Recaptcha Script Yüklenemedi!");
