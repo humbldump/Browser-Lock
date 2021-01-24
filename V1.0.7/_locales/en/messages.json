@@ -6,13 +6,13 @@
     "message": "New password again"
   },
   "sifreyi_unutma": {
-    "message": "Don't forget your password!"
+    "message": "Just make sure that you don't forget your password!"
   },
   "uygulama_baslik": {
     "message": "Browser Lock | Lock Your Browser"
   },
   "sifre_gir_uyari": {
-    "message": "Enter your password!"
+    "message": "Enter your password"
   },
   "oturum_ac_buton": {
     "message": "Sign In"
@@ -33,10 +33,10 @@
     "message": "Old password"
   },
   "yeni_sifre_gir_uyari": {
-    "message": "Enter your new password!"
+    "message": "Enter your new password"
   },
   "yeni_sifre_tekrar_uyari": {
-    "message": "Enter your new password again!"
+    "message": "Confirm your new password"
   },
   "kaydet_buton": {
     "message": "SAVE"
@@ -72,13 +72,13 @@
     "message": "Browser successfully unlocked"
   },
   "sifre_degisti": {
-    "message": "Browser password changed successfully!"
+    "message": "Password has been changed successfully!"
   },
   "eski_yeni_sifre_ayni": {
-    "message": "New password cannot be same with the old password!"
+    "message": "New password cannot be the same as old!"
   },
   "yeni_sifre_eslesmedi": {
-    "message": "New passwords must match!"
+    "message": "Entered passwords do not match"
   },
   "sifre_yanlis": {
     "message": "Wrong password"
@@ -87,7 +87,7 @@
     "message": "Create main password"
   },
   "ana_sifre_olusturuldu": {
-    "message": "Main password saved"
+    "message": "Registration has been completed!"
   },
   "ana_sifre_kaydedilmedi": {
     "message": "Can't save password"
@@ -102,7 +102,7 @@
     "message": " </b> Attempts left!"
   },
   "uygulama_aciklama": {
-    "message": "Secure your browser against unauthorized people, easily!"
+    "message": "Take control of your web browser privacy!"
   },
   "uygulama_kisa_baslik": {
     "message": "BrowserLock"
@@ -111,22 +111,22 @@
     "message": "Browser Lock"
   },
   "gizli_pencere": {
-    "message": "For maximum safety, allow Browser Lock for working in incognito mode."
+    "message": "For maximum safety, allow Browser Lock to work in incognito mode."
   },
   "bizi_puanla": {
-    "message": "If u like Browser Lock, support me on my patreon ♥"
+    "message": "If you like Browser Lock, support me on my patreon ♥"
   },
   "eposta_adresin": {
-    "message": "Yout Email:"
+    "message": "Your Email:"
   },
   "epostani_gir": {
-    "message": "Enter your email..."
+    "message": "Enter your Email address"
   },
   "eposta_kaydedildi": {
-    "message": "Email saved..."
+    "message": "Email has been saved"
   },
   "eposta_hatali": {
-    "message": "Please enter a valid email."
+    "message": "Please enter a valid email address"
   },
   "eposta_kaydet": {
     "message": "Save Email"
@@ -147,7 +147,7 @@
     "message": "Deep Security"
   },
   "derin_guvenlik_aciklama": {
-    "message": "Locks the browser for 3 minutes after 3 wrong login attempt at the main login."
+    "message": "It locks the browser login for 3 minutes after 3 wrong login attempts."
   },
   "karanlik_mod": {
     "message": "Dark Mod"
@@ -162,16 +162,16 @@
     "message": "Clear History"
   },
   "gecmisi_temizle_aciklama": {
-    "message": "Clears browser history after 3 wrong login attempt at the main login."
+    "message": "It clears browser history after 3 wrong login attempts."
   },
   "acik": {
-    "message": " Open!"
+    "message": ", has been activated!"
   },
   "kapali": {
-    "message": " Close!"
+    "message": ", has been deactivated!"
   },
   "sifre_kurtarma_aciklama": {
-    "message": "Enter your saved <b>Email</b> and we will send you a <b>Recovery Code</b>"
+    "message": "Enter your <b>Mail</b> address, we will send you <b>Recovery Code</b>"
   },
   "gonder": {
     "message": "Send"

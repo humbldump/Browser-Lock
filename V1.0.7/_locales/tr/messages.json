@@ -171,7 +171,7 @@
     "message": " Kapalı!"
   },
   "sifre_kurtarma_aciklama": {
-    "message": "Lütfen sisteme kayıtlı <b>Eposta</b> adresini gir. Sana <b>Kurtarma Kodu</b> içeren bir eposta göndereceğiz."
+    "message": "Sisteme kayıtlı <b>Eposta</b> adresini gir. Sana <b>Kurtarma Kodu</b> içeren bir eposta göndereceğiz."
   },
   "gonder": {
     "message": "Gönder"

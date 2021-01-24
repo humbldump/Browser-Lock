@@ -45,6 +45,7 @@ $("input[type='checkbox']").on("click", function (e) {
 
 //Şifre Değiştirme
 $(".change__pass__btn").on("click", donus => {
+    donus.preventDefault()
     option.checkinput().then(resolve => {
         if (resolve) {
             const oldInput = $("input[name=old-browser-pass]");
@@ -233,13 +234,13 @@ class option {
             //todo tekrar bak bura knk
             //? Kullanıcı maili sisteme kayıtlı mı kontrolü
 
-            var mail = window.prompt("Geçerli bir mail adresi girin.", "Mail adresin")
+            var mail = window.prompt(util.ceviri('epostani_gir'), "e.g. humbldump@protonmail.com")
             if (util.ValidMail(mail) != false) {
                 //mail ayarları
                 localStorage.setItem('MainMail', $(Mail).val()); localStorage.setItem('PassRecovery','true');
             }
             else {
-                alert("Lütfen geçerli bir mail adresi giriniz!!!")
+                alert(util.ceviri('eposta_hatali'))
                 this.MailKontrol()
             }
 
@@ -401,7 +402,7 @@ class option {
                             if (Sifre.val().length > 0 && Sifre.val().length <= 25) {
 
                                 if (util.ValidMail(Mail.val()) == false) {
-                                    alert("Lütfen mail adresinizi doğru giriniz!")
+                                    alert(util.ceviri('eposta_hatali'))
                                     $(Mail).focus()
                                     return false
                                 }
