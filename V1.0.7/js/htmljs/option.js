@@ -94,7 +94,9 @@ $("input").on("focus", donus => {
         $(donus.target).parent().removeClass("alert");
     }
 });
-
+$("form").submit(function (e) { 
+    e.preventDefault();
+});
 //Sağ üst uyarıları
 $(document).on('click', '.notifyjs-uyar-base', (e) => {
 

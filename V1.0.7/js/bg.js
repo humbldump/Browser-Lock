@@ -232,6 +232,8 @@ class BrowserLock {
             } else if (reason == 'install') {
                 notification.yuklendi(suanversion);
             }
+
+            chrome.runtime.openOptionsPage()
         })
     }
 }

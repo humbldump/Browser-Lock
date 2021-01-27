@@ -9,9 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).contextmenu(function () {
     return false;
 });
-$("#login_btn_field").on("click", function () {
+
+$("form").submit(function (e) { 
+    e.preventDefault();
+});
+
+$("#login_btn_field").on("click", function (e) {
     if (localStorage.settime) return false;
-    event.preventDefault();
+    e.preventDefault();
     const input = $(".tarayici__pwd");
     if (input.val().length === 0) {
         input.parent().addClass("alert");
