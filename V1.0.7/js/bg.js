@@ -75,7 +75,7 @@ class BrowserLock {
                 incognito: false,
                 type: 'panel',
             };
-
+            
             chrome.windows.create(GirisBilgileri, (wnd) => {
                 localStorage.KilitEkran = "true";
                 localStorage.setItem('EkranID',wnd.id);
