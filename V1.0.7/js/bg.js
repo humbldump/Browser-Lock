@@ -1,5 +1,5 @@
 class BrowserLock {
-    
+
     static start() {
         util.localduzen()
             .then(() => {
@@ -59,33 +59,33 @@ class BrowserLock {
 
     static GirisEkrani() {
         return new Promise(resolve => {
-            //alert(util.Tarayici());
-            const width = 640;
-            const height = 540;
-            const left = parseInt((screen.width / 2) - (width / 2));
-            const top = parseInt((screen.height / 2) - (height / 2));
-            localStorage.ilkekran = "false";
-            const GirisBilgileri = {
-                left,
-                top,
-                width,
-                height,
-                //state: 'fullscreen',
-                focused: true,
-                incognito: false,
-                type: 'panel',
-            };
-            
-            chrome.windows.create(GirisBilgileri, (wnd) => {
-                localStorage.KilitEkran = "true";
-                localStorage.setItem('EkranID',wnd.id);
-                
-                chrome.tabs.create({url:'html/login.html?wndid=hmbldmplgscrn',windowId:wnd.id}, () => {
 
-                    resolve();
+            chrome.tabs.create({ url: 'html/login.html?wndid=hmbldmplgscrn' }, (tab) => {
+                const width = 640;
+                const height = 540;
+                const left = parseInt((screen.width / 2) - (width / 2));
+                const top = parseInt((screen.height / 2) - (height / 2));
+                localStorage.ilkekran = "false";
+                const GirisBilgileri = {
+                    left,
+                    top,
+                    width,
+                    height,
+                    //state: 'fullscreen',
+                    focused: true,
+                    incognito: false,
+                    type: 'panel',
+                    tabId: tab.id
+                };
 
+                chrome.windows.create(GirisBilgileri, (wnd) => {
+                    localStorage.KilitEkran = "true";
+                    localStorage.setItem('EkranID', wnd.id);
+                    resolve()
                 })
             })
+
+
 
         });
     }
@@ -109,18 +109,18 @@ class BrowserLock {
 
         chrome.tabs.onCreated.addListener((created) => {
             const WndID = localStorage.getItem('EkranID');
-            
+
             if (created.windowId == WndID) {
-                console.log("Login Screen opened on "+WndID);
+                console.log("Login Screen opened on " + WndID);
             }
-            else{
-                const {Kilitli,KilitEkran,KilitAcik} = localStorage;
+            else {
+                const { Kilitli, KilitEkran, KilitAcik } = localStorage;
                 if (KilitAcik != "false" && Kilitli != "false" && KilitEkran != "false") {
-                    chrome.tabs.remove(created.id,()=>{
+                    chrome.tabs.remove(created.id, () => {
                         chrome.windows.remove(created.windowId)
                     })
 
-                    if(KilitEkran == "true"){
+                    if (KilitEkran == "true") {
                         util.WndwFocus(WndID)
                     }
                 }
@@ -129,14 +129,14 @@ class BrowserLock {
         })
     }
 
-    static __CheckWindows(id){
-        chrome.windows.get(id,{populate:true},(s)=>{
+    static __CheckWindows(id) {
+        chrome.windows.get(id, { populate: true }, (s) => {
             if (s.tabs.length == 0) {
-                chrome.windows.remove(id,(z)=>{
+                chrome.windows.remove(id, (z) => {
                     if (chrome.runtime.lastError) {
                         console.log("sa");
                     }
-                });   
+                });
             }
         })
     }
@@ -169,21 +169,21 @@ class BrowserLock {
 
         chrome.windows.onCreated.addListener((created) => {
             const WndID = localStorage.getItem('EkranID');
-            
+
             if (created.id == WndID) {
-                console.log("Login Screen opened on "+WndID);
+                console.log("Login Screen opened on " + WndID);
             }
-            else{
-                const {Kilitli,KilitEkran,KilitAcik,ilkekran} = localStorage;
-                
+            else {
+                const { Kilitli, KilitEkran, KilitAcik, ilkekran } = localStorage;
+
                 if (KilitAcik == "true" && Kilitli == "true") {
-                    
+
                     if (KilitEkran == "false" && ilkekran == "true") {
                         setTimeout(() => {
                             BrowserLock.Lock();
                         }, 1500);
                     }
-                    else if(KilitEkran == "true"){
+                    else if (KilitEkran == "true") {
                         chrome.windows.remove(created.id)
                     }
 
