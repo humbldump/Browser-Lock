@@ -1,20 +1,19 @@
 class BrowserLock {
 
     static start() {
+        BrowserLock.__onCommand();
+        BrowserLock.__onInstalled();
+        BrowserLock.UnistalURL();
+        BrowserLock.__onTabCreate();
+        BrowserLock.__onWindowClose();
+        BrowserLock.__onWindowsCreate();
         util.localduzen()
             .then(() => {
-                BrowserLock.__onCommand();
-                BrowserLock.__onInstalled();
-                BrowserLock.ContextOlustur();
-                BrowserLock.UnistalURL();
                 if (localStorage.KilitAcik === "true") {
                     setTimeout(() => {
                         BrowserLock.Lock()
                     }, 1500);
-                    BrowserLock.__onTabCreate();
-                    BrowserLock.__onWindowClose();
-                    
-                    BrowserLock.__onWindowsCreate();
+                   
                 } else {
                     notification.sifreuyar();
                 }
@@ -110,8 +109,9 @@ class BrowserLock {
     static __onTabCreate() {
 
         chrome.tabs.onCreated.addListener((created) => {
+            console.log(created);
             const WndID = localStorage.getItem('EkranID');
-
+            
             if (created.windowId == WndID) {
                 console.log("Login Screen opened on " + WndID);
             }
