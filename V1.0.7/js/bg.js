@@ -3,6 +3,7 @@ class BrowserLock {
     static start() {
         util.localduzen()
             .then(() => {
+                BrowserLock.__onCommand();
                 BrowserLock.__onInstalled();
                 BrowserLock.ContextOlustur();
                 BrowserLock.UnistalURL();
@@ -12,6 +13,7 @@ class BrowserLock {
                     }, 1500);
                     BrowserLock.__onTabCreate();
                     BrowserLock.__onWindowClose();
+                    
                     BrowserLock.__onWindowsCreate();
                 } else {
                     notification.sifreuyar();
@@ -129,6 +131,13 @@ class BrowserLock {
         })
     }
 
+    static __onCommand(){
+        chrome.commands.onCommand.addListener((e) =>{
+            if (e == "lock-the-browser") {
+                util.yenidenKilit()
+            }
+        });
+    }
     static __CheckWindows(id) {
         chrome.windows.get(id, { populate: true }, (s) => {
             if (s.tabs.length == 0) {
