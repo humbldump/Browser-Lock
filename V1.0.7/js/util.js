@@ -61,9 +61,9 @@ class util {
         } = localStorage;
         if (KilitAcik === "true") {
             if (KilitEkran != "true") {
-                localStorage.ilkekran = "true";
-                localStorage.Kilitli = "true";
-                BrowserLock.start()
+                util.localduzen().then(()=>{
+                    BrowserLock.Lock()
+                })
             }
         } else {
             notification.sifreuyar();
