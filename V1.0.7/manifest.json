@@ -22,6 +22,15 @@
   "minimum_chrome_version": "49",
   "name": "__MSG_uygulama_baslik__",
   "options_page": "html/options.html",
+  "commands": {
+    "lock-the-browser": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Press to lock your browser"
+    }
+  },
   "permissions": [
     "tabs",
     "notifications",

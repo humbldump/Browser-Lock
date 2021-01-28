@@ -130,11 +130,11 @@ $(document).on('click', '.notifyjs-uyar-base', (e) => {
 
 //Change mail butonu tıklaması
 $(document).on("click", ".mail_button_section button#btn__field.btn-1e.main__mail__btn", function maildegis() {
-    if (mail = util.ValidMail(window.prompt("Geçerli bir mail adresi girin.", "Mail adresin"))) {
+    if (mail = util.ValidMail(window.prompt(alert(util.ceviri('epostani_gir')), "e.g. humbldump@protonmail.com"))) {
         localStorage.setItem('MainMail', mail)
     }
     else {
-        alert("Lütfen geçerli bir mail adresi giriniz!!!")
+        alert(util.ceviri('eposta_hatali'))
     }
 });
 
@@ -239,7 +239,8 @@ class option {
             var mail = window.prompt(util.ceviri('epostani_gir'), "e.g. humbldump@protonmail.com")
             if (util.ValidMail(mail) != false) {
                 //mail ayarları
-                localStorage.setItem('MainMail', $(Mail).val()); localStorage.setItem('PassRecovery','true');
+                localStorage.setItem('MainMail', mail); 
+                localStorage.setItem('PassRecovery','true');
             }
             else {
                 alert(util.ceviri('eposta_hatali'))

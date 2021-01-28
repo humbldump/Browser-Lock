@@ -92,10 +92,10 @@ $(".password_lost").click(function (e) {
 
 $(".bars__location i").on("click", (event) => {
     if (util.ValidMail(localStorage.getItem('MainMail')) == false) {
-        util.uyarigonder("Browser Lock", "Sistemde kayıtlı bir mail yok" );
+        util.uyarigonder("Browser Lock", "We couldn't find your mail adress." );
     }
     else if (localStorage.getItem('PassRecovery') != 'true') {
-        util.uyarigonder("Browser Lock", "Şifre sıfırlama kapalı durumda" );
+        util.uyarigonder("Browser Lock", "nope" );
     }
     else {
         if (hkljdm == "false") {
