@@ -7,6 +7,7 @@ class BrowserLock {
         BrowserLock.__onTabCreate();
         BrowserLock.__onWindowClose();
         BrowserLock.__onWindowsCreate();
+        BrowserLock.ContextOlustur();
         util.localduzen()
             .then(() => {
                 if (localStorage.KilitAcik === "true") {
